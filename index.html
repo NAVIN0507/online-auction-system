@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Auction System - Auctions</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+    body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1em;
+}
+
+section {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.auction-item {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+}
+
+button {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+footer {
+    text-align: center;
+    padding: 1em;
+    background-color: #333;
+    color: white;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.hidden {
+    display: none;
+}
+
+/* ... previous code ... */
+
+.auction-item {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+img {
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+/* ... previous code ... */
+
+</style>
+<body>
+    <header>
+        <h1>Online Auction System</h1>
+    </header>
+
+    <section id="auction-list">
+    </section>
+
+    <footer>
+        <p>&copy; 2023 Online Auction System</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+    fetchAuctionItems();
+
+    document.getElementById('auction-list').addEventListener('click', (event) => {
+        if (event.target.classList.contains('place-bid-button')) {
+            const auctionItemId = event.target.dataset.auctionItemId;
+            window.location.href = `C:/Users/91944/OneDrive/Desktop/Javascript/promise-async-await/bids.html?id=${auctionItemId}`;
+        }
+    });
+});
+
+function fetchAuctionItems() {
+
+    const auctionList = document.getElementById('auction-list');
+
+    const data = [
+        { id: 1, name: 'Auction Item 1', description: 'Mac Book Pro', currentBid: 100000, image: 'laptop.jpeg' },
+        { id: 2, name: 'Auction Item 2', description: 'Consectetur adipiscing elit.', currentBid: 150, image: 'pixel6a.jpeg' },
+    ];
+
+    data.forEach(item => {
+        const itemElement = document.createElement('div');
+        itemElement.classList.add('auction-item');
+        itemElement.innerHTML = `
+            <h2>${item.name}</h2>
+            <img src="${item.image}" alt="${item.name}" style="max-width: 100%;">
+            <p>Description: ${item.description}</p>
+            <p>Current Bid: ${item.currentBid}</p>
+            <button class="place-bid-button" data-auction-item-id="${item.id}">Place Bid</button>
+        `;
+        auctionList.appendChild(itemElement);
+    });
+}
+
+    </script>
+</body>
+</html>
